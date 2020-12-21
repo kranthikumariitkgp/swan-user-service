@@ -1,0 +1,16 @@
+# db creation
+use swan-service
+
+# db-user creation
+db.createUser(
+  {
+    user: "swanUsername",
+    pwd:  "Test@123",
+    roles: [ { role: "readWrite", db: "swan-service" } ]
+  }
+)
+# collection creation
+db.createCollection("users")
+
+# use below command to maintain unique email id for registration
+db.users.createIndex({ "email": 1 }, { unique: true })
